@@ -1,3 +1,8 @@
+este es mi crud utilizando vuejs y axios
+la api que utilice es la siguiente: 
+https://github.com/AlejandroPA76/vuejs-laravel9
+probada localmente con laravel se encuentra en la carpeta back
+
 # vuecli-api
 
 ## Project setup
