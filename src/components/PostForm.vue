@@ -7,7 +7,7 @@
     <label for="apellido">Apellido:</label>
     <input type="text" id="apellido" v-model="formData.apellidos" required>
 
-    <button type="submit">Enviar</button>
+    <button @click="submit">Enviar</button>
   </form>
    <ul>
       <!-- listar todos los datos del api-->
@@ -18,6 +18,7 @@
         <button>edit</button>{{}}
         <button>delete</button>
     </li>
+
     </ul>
 </template>
 
@@ -38,7 +39,13 @@ export default {
     };
   },
    created() {
-    // Llamada GET utilizando Axios
+   this.add();
+  },
+
+  methods: {
+    //metodo agregar
+    add(){
+       // Llamada GET utilizando Axios
     axios.get('http://127.0.0.1:8000/api/clientes')
       .then(response => {
         // La respuesta de la API estará en la propiedad 'data' del objeto response
@@ -48,15 +55,16 @@ export default {
         console.error('Error al obtener la lista de clientes:', error);
         // Puedes manejar errores aquí
       });
-  },
-
-  methods: {
+    },
+    //metodo para enviar datos a la base de datos POST
     submitForm() {
       // Realizar la solicitud POST utilizando Axios
       axios.post('http://127.0.0.1:8000/api/clientes', this.formData)
         .then(response => {
           console.log('Respuesta de la API:', response.data);
           // Puedes manejar la respuesta de la API aquí
+          //agregue this.add para que se llame al metodo get y mantener la lista actualizada
+          this.add();
         })
         .catch(error => {
           console.error('Error al hacer POST:', error);
