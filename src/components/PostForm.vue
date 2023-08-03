@@ -1,6 +1,6 @@
 <!-- PostForm.vue -->
 <template>
-  <form @submit.prevent="submitForm">
+  <form @submit.prevent="create">
     <label for="name">Nombre:</label>
     <input type="text" id="name" v-model="formData.nombres" required>
 
@@ -39,12 +39,12 @@ export default {
     };
   },
    created() {
-   this.add();
+   this.read();
   },
 
   methods: {
-    //metodo agregar
-    add(){
+    //metodo leer
+    read(){
        // Llamada GET utilizando Axios
     axios.get('http://127.0.0.1:8000/api/clientes')
       .then(response => {
@@ -56,22 +56,25 @@ export default {
         // Puedes manejar errores aquí
       });
     },
-    //metodo para enviar datos a la base de datos POST
-    submitForm() {
+    //metodo crear
+    create() {
       // Realizar la solicitud POST utilizando Axios
       axios.post('http://127.0.0.1:8000/api/clientes', this.formData)
         .then(response => {
           console.log('Respuesta de la API:', response.data);
           // Puedes manejar la respuesta de la API aquí
           //agregue this.add para que se llame al metodo get y mantener la lista actualizada
-          this.add();
+          this.read();
         })
         .catch(error => {
           console.error('Error al hacer POST:', error);
           // Puedes manejar errores aquí
         });
     },
+    //metodo show
+    show(){
       
-  },
+        },
+    }
 };
 </script>
