@@ -7,19 +7,40 @@
     <label for="apellido">Apellido:</label>
     <input type="text" id="apellido" v-model="formData.apellidos" required>
 
-    <button @click="submit">Enviar</button>
+    <button @click="submit">Agregar</button>
   </form>
-   <ul>
-      <!-- listar todos los datos del api-->
-      <li v-for="item in listClientes" :key="item.id">
-        {{item.nombres}} 
-        {{item.apellidos}} 
-        <button>show</button>{{}}
-        <button>edit</button>{{}}
-        <button>delete</button>
-    </li>
-
-    </ul>
+   <div class="container">
+   <div class="card">
+      <div class="card-header">
+        Usuarios
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in listClientes" :key="item.id">
+              <td>{{item.id}}</td>
+              <td>{{item.nombres}}</td>
+              <td>{{item.apellidos}}</td>
+              <td>
+                 <a class="btn btn-primary" href="" >ver</a>
+                 <a class="btn btn-warning" href="" >editar</a>
+                 <a class="btn btn-danger" href="" >eliminar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+   </div>
+     </div>
 </template>
 
 <script>
@@ -38,6 +59,7 @@ export default {
       },
     };
   },
+  //created es un metodo que indica que cuando se cree un componente se ejecute determinado metodo
    created() {
    this.read();
   },
